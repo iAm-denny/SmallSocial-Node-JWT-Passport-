@@ -1,6 +1,6 @@
 # SmallSocial-Node-JWT-Passport-
 
-Please create Files "keys" in config Folder
+Please create Files <b>"keys"</b> in <i>config Folder</i> <br/>
 
 In keys file
 module.exports= { <br/>
@@ -15,7 +15,7 @@ module.exports= { <br/>
     cookie: { <br/>
         sessionKey:'net.com' <br/>
     },
-    mongodb: {
+    mongodb: {<br/>
         url : mongodbURL <br/>
-    }
-}
+    }<br/>
+}<br/>
