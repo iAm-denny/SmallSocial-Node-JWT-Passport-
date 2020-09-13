@@ -1,21 +1,23 @@
 # SmallSocial-Node-JWT-Passport-
+<pre>
 
 Please create Files <b>"keys"</b> in <i>config Folder</i> <br/>
 
 In keys file
-module.exports= { <br/>
-    google: { <br/>
-        clientID: " your id in <b>Google Developers Console</b>", <br/>
-    clientSecret "your Secret in <b>Google Developers Console</b>": <br/>
+module.exports= {
+    google: { 
+        clientID: " your id in <b><a href='https://console.developers.google.com/'>Google Developers Console</a> </b>", 
+        clientSecret "your Secret in <b> <a href='https://console.developers.google.com/'>Google Developers Console </a> </b>": 
     },
-    facebook: {<br/>
-        clientID: <b>your id in facebook for Developer</b> <br/>
-        clientSecret:  <b>your Secret in facebook for Developer</b> <br/>
+    facebook: {
+        clientID: your id in  <b> <a href='https://developers.facebook.com/'>facebook for Developer </a> </b>
+        clientSecret:  your Secret in <b> <a href='https://developers.facebook.com/'>facebook for Developer <a/> </b>
     },
-    cookie: { <br/>
-        sessionKey:'net.com' <br/>
+    cookie: { 
+        sessionKey:'net.com' 
     },
-    mongodb: {<br/>
-        url : mongodbURL <br/>
+    mongodb: {
+        url : mongodbURL 
     }<br/>
-}<br/>
+}
+</pre>
