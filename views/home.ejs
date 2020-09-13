@@ -1,0 +1,34 @@
+
+  <%- include("./partials/header.ejs") %>
+ 
+    
+    <section class="topics_header">
+      <h1>Topics</h1>
+      <% if (user || ownUser)  {%>
+        <div><a href="/create_post">Create Post</a></div>
+      <%}else{%>
+      <div class="before_login">You need to <span>"log in"</span> to create post.</div>
+      <%}%>
+    </section>
+    
+      <%topics.forEach(topic => {%>
+        <section class="topics_info">
+      <a href="/create_post/detail/<%= topic._id%>" class="topic">
+        <div>
+          <p>Posted by - 
+            <%if(topic.thumbnail) { %>
+              <img src="<%=topic.thumbnail%>" >
+            <%} else {%>
+              <img src="userimages/ninja-fb-profile.jpg">
+            <%}%>
+            <%= topic.username%></p>
+          <h3>Title - <%= topic.title%></h3>
+          <br/>
+          <p><%= topic.createdAt%></p>
+        </div>
+      </a>
+    </section>
+      <%}) %>
+      
+  </body>
+</html>

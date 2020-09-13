@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <div><a href="/">Net.com</a></div>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="">About</a></li>
+       
+        <% if(ownUser){%>
+            <li class="display">
+            <img src="/userimages/ninja-fb-profile.jpg" alt="" width="50px">
+            <span class="displayname"> <%=ownUser.username%></span>
+        </li>
+            <li class="auth"><a href="/auth/logout" >Logout</a></li>
+        <%}else if(user){%>
+            <li  class="display">
+            <img src="<%= user.thumbnail%>" alt="" width="50px">
+            <span class="displayname"><%= user.displayname%></span>
+        </li>
+            <li class="auth"><a href="/auth/logout" >Logout</a></li>
+        <% } else{%>
+            <li  class="auth"><a href="/auth/login">Login</a></li>
+            <li class="auth"><a href="/auth/signup">Sign up</a></li>
+            <% } %>
+            
+    </ul>
+</header>

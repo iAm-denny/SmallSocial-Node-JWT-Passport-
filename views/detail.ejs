@@ -1,0 +1,121 @@
+
+  <%- include("./partials/header.ejs") %>
+    <section class="detail">
+        <%if(topic.thumbnail) { %>
+          <img src="<%=topic.thumbnail%>" >
+        <%} else {%>
+          <img src="/userimages/ninja-fb-profile.jpg">
+        <%}%>
+      <h3><%= topic.title%></h3>
+      
+      <div class="name"><%= topic.username%></div> 
+      <p><%= topic.content%></p>
+      <div class="parentDelete-btn">
+        <%if(ownUser){
+                 if(topic.contentId === ownUser.id) {%>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <%} else {%>
+  
+      <%}}else if(user){
+                if(topic.contentId === user.id) {%>
+                  
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <%} else {%>
+  
+      <% }} else{%>
+          <% } %>
+      </div>  
+      <a class="delete_btn" data-del="<%=topic._id %>">Delete</a>
+    </section>
+
+      <div>
+        <%  if(ownUser) { %>
+          <h2 align='center'>Comment </h2>
+          <form action="/create_post/comment" class="comment-section" method="POST">
+              
+                <input type="hidden" value="<%= locals.ownUser.username%>" name="username">
+                <input type="hidden" value="<%=topic._id %>" name="contentId">
+                <input type="text" value="" name="comment" required>
+                <button>Submit</button>
+          </form>
+        <%}else if(user) { %>
+          <h2 align='center'>Comment </h2>
+          <form action="/create_post/comment" class="comment-section" method="POST">
+          <input type="hidden" value="<%= user.displayname%>" name="username">
+          <input type="hidden" value="<%= user.thumbnail %>" name="thumbnail">
+          <input type="hidden" value="<%= topic._id%>" name="contentId">
+          <input type="text" value="" name="comment" required>
+          <button>Submit</button>
+        </form>
+        
+        <%}else { %>
+          <form class="comment-section">
+            <h3>Please create account to comment :)</h3>
+          </form>
+        <%}%>
+        <div class="head">
+          <%if(comments.length >= 1){ %>
+          <h4 align='center' class="toggleComs">Hide Comments  </h4>
+          <%} else {%>
+            <div></div>
+          <%}%>
+          
+      </div> 
+        <%if(comments){ %>
+            <%comments.forEach(comment => {%>
+              <div class="comments">
+              <div class="coms">
+                <%if(comment.thumbnail) { %>
+                  <img src="<%=comment.thumbnail%>" >
+            
+                <%} else {%>
+                  <img src="/userimages/ninja-fb-profile.jpg">
+                <%}%>
+                <h4><%= comment.username%></h4>
+                <p><%= comment.comment%></p>
+              </div>
+               
+              </div>
+        <%})}else {%>
+          No comments
+        <%}%>
+      </div>
+
+
+      <!-- //////////////Javascript/////////////////// -->
+    <script>
+      const parentDelete = document.querySelector('.parentDelete-btn')
+      const deleteBtn = document.querySelector('a.delete_btn')
+
+      parentDelete.addEventListener('click', (e) => {
+        deleteBtn.classList.toggle('active')
+      })
+      deleteBtn.addEventListener('click', e => {
+        fetch(`/create_post/delete/${deleteBtn.dataset.del}`, {
+          method:'DELETE',
+        })
+        .then(res => res.json())
+        .then(data => window.location.href = data.redirect)
+        .catch(err => console.log(err))
+      })
+      const toggleComs = document.querySelector('.toggleComs')
+      const comments = document.querySelectorAll('.comments')
+      toggleComs.addEventListener('click', e => {
+          if(toggleComs.innerHTML === 'Show Comments') {
+            toggleComs.innerHTML = 'Hide Comments '
+          }
+          else {
+            toggleComs.innerHTML = 'Show Comments'
+          }
+          comments.forEach(commect => {
+            commect.classList.toggle('active')
+  
+          })
+      })
+    </script>
+  </body>
+</html>
