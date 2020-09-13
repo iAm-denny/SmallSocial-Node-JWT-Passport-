@@ -3,7 +3,7 @@
 Please create Files "keys" in config Folder
 
 In keys file
-module.exports= {
+module.exports= { <br/>
     google: {
         clientID: " your id in Google Developers Console",
         clientSecret "your Secret in Google Developers Console":
